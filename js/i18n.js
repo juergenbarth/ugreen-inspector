@@ -166,11 +166,11 @@
             checkPwdExpiryDesc:      'Without password expiry, compromised credentials remain valid indefinitely. Enforcing a maximum password age limits the window of exposure if a password is leaked.',
             checkPwdExpiryRemediation: 'Enable password expiry: UGOS Control Panel › Users › Password Expiry.',
 
-            // ── check-maintenance.js ───────────────────────────────────────────
-            checkAutoUpdateFailTitle: 'Automatic Firmware Updates Are Disabled',
-            checkAutoUpdatePassTitle: 'Automatic Firmware Updates Are Enabled',
-            checkAutoUpdateDesc:      'With automatic updates disabled, security patches must be applied manually. Delayed patching leaves the NAS exposed to known vulnerabilities for longer than necessary.',
-            checkAutoUpdateRemediation: 'Enable automatic firmware updates: UGOS Control Panel › System Update › Automatic Update.',
+            // ── check-maintenance.js (BP) ──────────────────────────────────────
+            bpCheckAutoUpdateFailTitle: 'Automatic Firmware Installation Enabled',
+            bpCheckAutoUpdatePassTitle: 'Firmware Updates Under Manual Control',
+            bpCheckAutoUpdateDesc:      'Automatic firmware installation can trigger unexpected reboots at uncontrolled times and applies untested updates without a review window. Notification-only mode satisfies CIS 7.3 (timely, organised patching) while keeping you in control of when updates are applied.',
+            bpCheckAutoUpdateRemediation: 'Disable automatic installation and enable update notifications instead: UGOS Control Panel › System Update › set to "Notify only". Apply updates during a planned maintenance window.',
 
             // ── check-bestpractices.js ─────────────────────────────────────────
             bpCheckWideLinksFailTitle: 'SMB Wide Links Are Enabled',
@@ -389,11 +389,11 @@
             checkPwdExpiryDesc:      'Ohne Kennwortablauf bleiben kompromittierte Zugangsdaten unbegrenzt gültig. Ein maximales Kennwortalter begrenzt das Risikofenster bei Datenlecks.',
             checkPwdExpiryRemediation: 'Kennwortablauf aktivieren: UGOS Systemsteuerung › Benutzer › Kennwortablauf.',
 
-            // ── check-maintenance.js ───────────────────────────────────────────
-            checkAutoUpdateFailTitle: 'Automatische Firmware-Updates sind deaktiviert',
-            checkAutoUpdatePassTitle: 'Automatische Firmware-Updates sind aktiviert',
-            checkAutoUpdateDesc:      'Bei deaktivierten automatischen Updates müssen Sicherheits-Patches manuell eingespielt werden. Verzögertes Patching lässt das NAS länger als nötig bekannten Sicherheitslücken ausgesetzt.',
-            checkAutoUpdateRemediation: 'Automatische Firmware-Updates aktivieren: UGOS Systemsteuerung › Systemaktualisierung › Automatische Updates.',
+            // ── check-maintenance.js (BP) ──────────────────────────────────────
+            bpCheckAutoUpdateFailTitle: 'Automatische Firmware-Installation aktiviert',
+            bpCheckAutoUpdatePassTitle: 'Firmware-Updates unter manueller Kontrolle',
+            bpCheckAutoUpdateDesc:      'Automatische Firmware-Installation kann unerwartete Neustarts zu unkontrollierten Zeitpunkten auslösen und spielt Updates ohne Prüfung ein. Der Benachrichtigungsmodus erfüllt CIS 7.3 (zeitnahes, geregeltes Patching) und lässt dennoch die Kontrolle über den Zeitpunkt beim Administrator.',
+            bpCheckAutoUpdateRemediation: 'Automatische Installation deaktivieren und stattdessen Update-Benachrichtigungen aktivieren: UGOS Systemsteuerung › Systemaktualisierung › "Nur benachrichtigen". Updates im geplanten Wartungsfenster einspielen.',
 
             // ── check-bestpractices.js ─────────────────────────────────────────
             bpCheckWideLinksFailTitle: 'SMB Wide Links sind aktiviert',
