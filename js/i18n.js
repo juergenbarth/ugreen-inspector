@@ -29,6 +29,10 @@
             loading:         'Analysing backup…',
             loadingHint:     'Decompressing and parsing — this may take a few seconds.',
             btnNewFile:      'Analyse another file',
+            btnExportPDF:    'Export PDF',
+            pdfReportTitle:  'Security Assessment Report',
+            pdfAnalysedOn:   'Analysed on',
+            pdfIssues:       'Findings',
 
             // ── Errors ────────────────────────────────────────────────────────
             errFileRead:     'Could not read file',
@@ -248,6 +252,10 @@
             loading:         'Backup wird analysiert…',
             loadingHint:     'Dekomprimierung und Analyse — dies kann einige Sekunden dauern.',
             btnNewFile:      'Weitere Datei analysieren',
+            btnExportPDF:    'PDF exportieren',
+            pdfReportTitle:  'Sicherheitsbericht',
+            pdfAnalysedOn:   'Analysiert am',
+            pdfIssues:       'Befunde',
 
             // ── Errors ────────────────────────────────────────────────────────
             errFileRead:     'Datei konnte nicht gelesen werden',

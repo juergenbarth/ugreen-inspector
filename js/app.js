@@ -117,6 +117,14 @@ function updateContextBar() {
                 <span class="context-value">${serialNumber}</span>
             </div>
             <div class="context-actions">
+                ${window.JKLP_PDF_EXPORT ? `
+                <button class="fd-button fd-button--ghost pdf-export-btn"
+                        onclick="${_activeTab === 'bestpractices' ? 'exportBPToPDF()' : 'exportToPDF()'}">
+                    <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                        <path d="M3 12h10M8 2v8M5 7l3 3 3-3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    ${t('btnExportPDF')}
+                </button>` : ''}
                 <button class="fd-button fd-button--ghost" onclick="resetApp()">
                     ${t('btnNewFile')}
                 </button>
