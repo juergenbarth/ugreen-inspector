@@ -166,6 +166,24 @@ function findTarEntryJson(tarEntries, filePathSuffix) {
 // ── Sub-config extractors ──────────────────────────────────────────────────────
 
 function extractTerminalConfig(tarEntries) {
+    // New format (UGOS grpc): terminal_backup_grpc_config.json
+    const grpcJson = findTarEntryJson(tarEntries, 'terminal_backup_grpc_config.json');
+    if (grpcJson?.data) {
+        const ssh    = grpcJson.data.ssh_config    ?? {};
+        const telnet = grpcJson.data.telnet_config ?? {};
+        return {
+            ssh: {
+                enable:              parseInt(ssh.enable              ?? 2, 10),
+                permitLanAccessOnly: parseInt(ssh.permit_lan_access_only ?? 2, 10),
+                encryptLevel:        parseInt(ssh.encrypt_level       ?? 0, 10),
+            },
+            telnet: {
+                enable: parseInt(telnet.enable ?? 2, 10),
+            },
+        };
+    }
+
+    // Legacy format: terminal_custom INI file
     const iniText = findTarEntry(tarEntries, 'terminal_custom');
     if (!iniText) return null;
     const sections = parseIni(iniText);
