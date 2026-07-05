@@ -65,7 +65,6 @@ function checkFileSharing(parseResult) {
     if (ftpConfig) {
         const ftpServiceActive  = ftpConfig.status === true || ftpConfig.status === 1;
         const plainFtpEnabled   = ftpServiceActive && (ftpConfig.enable_ftp === true || ftpConfig.enable_ftp === 1);
-        const ftpAnonEnabled    = ftpConfig.anonymous === true || ftpConfig.anonymous === 1;
 
         if (ftpServiceActive) {
             findings.push({
@@ -79,20 +78,6 @@ function checkFileSharing(parseResult) {
                 description:  t('checkFTPTLSDesc'),
                 remediation:  t('checkFTPTLSRemediation'),
             });
-
-            if (ftpAnonEnabled) {
-                findings.push({
-                    id:           'ugr-ftp-anonymous',
-                    severity:     'critical',
-                    status:       'fail',
-                    category:     t('catProtocols'),
-                    frameworks:   [fwRef('CIS','4.8'), fwRef('NIST','CM-7'), fwRef('ISO','A.8.3')],
-                    affectedItems: ['FTP'],
-                    title:        t('checkFTPAnonFailTitle'),
-                    description:  t('checkFTPAnonDesc'),
-                    remediation:  t('checkFTPAnonRemediation'),
-                });
-            }
         }
     }
 
@@ -110,26 +95,6 @@ function checkFileSharing(parseResult) {
             description:  t('checkWebDAVHttpDesc'),
             remediation:  t('checkWebDAVHttpRemediation'),
         });
-    }
-
-    // ── NFS version ───────────────────────────────────────────────────────────
-    if (nfsConfig) {
-        const nfsRunning = nfsConfig.enableNfsServer === true || nfsConfig.enableNfsServer === 1;
-        if (nfsRunning) {
-            const maximumNfsProtocol = nfsConfig.maximumNFSProtocol ?? 'NFSv3';
-            const nfsV4Enabled       = maximumNfsProtocol === 'NFSv4';
-            findings.push({
-                id:           'ugr-nfs-v3-only',
-                severity:     'medium',
-                status:       nfsV4Enabled ? 'pass' : 'fail',
-                category:     t('catProtocols'),
-                frameworks:   [fwRef('CIS','9.2'), fwRef('NIST','CM-7'), fwRef('ISO','A.8.20')],
-                affectedItems: [`NFS (${maximumNfsProtocol})`],
-                title:        nfsV4Enabled ? t('checkNFSV4PassTitle') : t('checkNFSV3FailTitle'),
-                description:  t('checkNFSV3Desc'),
-                remediation:  t('checkNFSV3Remediation'),
-            });
-        }
     }
 
     return findings;

@@ -102,81 +102,72 @@
             checkSSHLanOnlyFailTitle: 'SSH Is Accessible from the Internet (WAN)',
             checkSSHLanOnlyPassTitle: 'SSH Access Is Restricted to LAN',
             checkSSHLanOnlyDesc:      'SSH is enabled and accessible from outside the local network. This exposes the remote shell interface to the public internet, significantly increasing the risk of brute-force attacks, exploitation of SSH vulnerabilities, and unauthorized access.',
-            checkSSHLanOnlyRemediation: 'Restrict SSH to LAN only: UGOS Control Panel › Terminal › SSH › Permit LAN access only.',
+            checkSSHLanOnlyRemediation: 'Restrict SSH to LAN only: UGOS Control Panel › Terminal › SSH › Advanced › Permit LAN access only.',
 
             // ── check-filesharing.js ───────────────────────────────────────────
             checkSMB1FailTitle:      'SMBv1 Is Allowed',
             checkSMB1PassTitle:      'SMBv1 Is Disabled',
             checkSMB1Desc:           'SMBv1 is a legacy protocol with no encryption, no integrity checking, and no modern authentication. It is the vector for EternalBlue (WannaCry, NotPetya) and numerous other critical exploits. All modern clients support SMB2 or SMB3.',
-            checkSMB1Remediation:    'Set the minimum SMB protocol to SMB2 or higher: UGOS Control Panel › File Services › SMB.',
+            checkSMB1Remediation:    'Set the minimum SMB protocol to SMB2 or higher: UGOS Control Panel › File Services › SMB › Advanced › Supported SMB Protocols.',
 
             checkSMBSigningFailTitle: 'SMB Signing Is Not Enforced',
             checkSMBSigningPassTitle: 'SMB Signing Is Required',
-            checkSMBSigningDesc:      'SMB signing ensures that network packets have not been tampered with in transit. Without it, the NAS is vulnerable to NTLM relay attacks and man-in-the-middle attacks against SMB connections. "If required" mode is not sufficient — signing must be set to Required.',
-            checkSMBSigningRemediation: 'Set SMB signing to Required: UGOS Control Panel › File Services › SMB › Server Signing Mode.',
+            checkSMBSigningDesc:      'SMB signing ensures that network packets have not been tampered with in transit. Without it, the NAS is vulnerable to NTLM relay attacks and man-in-the-middle attacks against SMB connections. "If Required" mode is not sufficient — signing must be set to "Enforcing".',
+            checkSMBSigningRemediation: 'Set the Server Signing Mode to "Enforcing": UGOS Control Panel › File Services › SMB › Advanced › Server Signing Mode.',
 
             checkSMBEncryptFailTitle: 'SMB Encryption Is Disabled',
             checkSMBEncryptPassTitle: 'SMB Encryption Is Enabled',
             checkSMBEncryptDesc:      'Without SMB encryption, file content and credentials transmitted over SMB connections can be intercepted by anyone on the network path. SMB encryption (SMB3 feature) protects data in transit between the NAS and clients.',
-            checkSMBEncryptRemediation: 'Enable SMB encryption: UGOS Control Panel › File Services › SMB › Encryption Mode (set to "Desired" or "Required").',
+            checkSMBEncryptRemediation: 'Set the Transfer Encryption Mode to "Enforcing": UGOS Control Panel › File Services › SMB › Advanced › Transfer Encryption Mode.',
 
             checkFTPTLSFailTitle:    'Plain FTP Is Enabled',
             checkFTPTLSPassTitle:    'Plain FTP Is Disabled',
             checkFTPTLSDesc:         'Plain FTP transmits credentials and file content in clear text. Anyone on the network path can intercept passwords and data. Use FTPS (FTP over TLS) or switch to SFTP instead.',
-            checkFTPTLSRemediation:  'Disable plain FTP and enable FTPS only: UGOS Control Panel › File Services › FTP.',
-
-            checkFTPAnonFailTitle:   'FTP Anonymous Access Is Enabled',
-            checkFTPAnonDesc:        'Anonymous FTP allows any user to connect without credentials. This exposes shared files to the network without authentication.',
-            checkFTPAnonRemediation: 'Disable anonymous FTP access: UGOS Control Panel › File Services › FTP.',
+            checkFTPTLSRemediation:  'Disable plain FTP and enable FTPS only: UGOS Control Panel › File Services › FTP › Enable FTPS.',
 
             checkWebDAVHttpFailTitle: 'WebDAV Is Accessible over HTTP',
             checkWebDAVHttpPassTitle: 'WebDAV Is HTTPS-Only',
             checkWebDAVHttpDesc:      'WebDAV over unencrypted HTTP transmits credentials and file content in plain text. Any network observer can intercept authentication tokens and file data.',
-            checkWebDAVHttpRemediation: 'Disable HTTP WebDAV and use HTTPS only: UGOS Control Panel › File Services › WebDAV.',
-
-            checkNFSV3FailTitle:     'NFS Is Running with NFSv3 Only',
-            checkNFSV4PassTitle:     'NFS Is Configured for NFSv4',
-            checkNFSV3Desc:          'NFSv3 lacks authentication mechanisms beyond IP-address-based access controls. Any host that can reach the NAS on the network can potentially access NFS exports. NFSv4 supports Kerberos-based authentication and provides significantly stronger access control.',
-            checkNFSV3Remediation:   'Enable NFSv4 support: UGOS Control Panel › File Services › NFS › Maximum NFS Protocol.',
+            checkWebDAVHttpRemediation: 'Disable HTTP WebDAV and use HTTPS only: UGOS Control Panel › File Services › WebDAV › Advanced.',
 
             // ── check-network.js ───────────────────────────────────────────────
             checkDoSFailTitle:       'DoS Protection Is Disabled',
             checkDoSPassTitle:       'DoS Protection Is Active',
             checkDoSDesc:            'DoS (Denial of Service) protection drops malformed and flood packets before they can exhaust system resources. Without it, even simple network floods can degrade NAS responsiveness for legitimate users.',
-            checkDoSRemediation:     'Enable DoS protection: UGOS Control Panel › Security › Firewall › DoS Protection.',
+            checkDoSRemediation:     'Enable DoS protection: UGOS Control Panel › Security › DoS Protection.',
 
             // ── check-users.js ─────────────────────────────────────────────────
             checkPwdLengthFailTitle: 'Minimum Password Length Is Below Recommended Threshold',
             checkPwdLengthPassTitle: 'Minimum Password Length Meets Recommended Threshold',
             checkPwdLengthDesc:      'The current minimum password length ({0} characters) is below the recommended minimum of 12. Short passwords are significantly easier to crack by brute-force or dictionary attacks.',
-            checkPwdLengthRemediation: 'Increase the minimum password length to at least 12 characters: UGOS Control Panel › Users › Password Policy.',
+            checkPwdLengthRemediation: 'Increase the minimum password length to at least 12 characters: UGOS Control Panel › Users › Advanced › Minimum Password Length.',
 
             checkPwdCommonFailTitle: 'Common Password Check Is Not Enabled',
             checkPwdCommonPassTitle: 'Common Password Check Is Active',
             checkPwdCommonDesc:      'Without a common password check, users may set easily-guessable passwords such as "Password1!" that technically meet complexity rules but offer minimal real-world security.',
-            checkPwdCommonRemediation: 'Enable common password check: UGOS Control Panel › Users › Password Policy.',
+            checkPwdCommonRemediation: 'Enable common password check: UGOS Control Panel › Users › Advanced › Avoid Common Passwords.',
 
             checkPwdSpecialFailTitle: 'Password Policy Does Not Require Special Characters',
             checkPwdSpecialPassTitle: 'Password Policy Requires Special Characters',
             checkPwdSpecialDesc:      'Requiring at least one special character significantly increases password entropy and resistance to dictionary attacks.',
-            checkPwdSpecialRemediation: 'Enable special character requirement: UGOS Control Panel › Users › Password Policy.',
+            checkPwdSpecialRemediation: 'Enable special character requirement: UGOS Control Panel › Users › Advanced › Must Contain at Least 1 Special Character.',
 
             checkPwdExpiryFailTitle: 'Password Expiry Is Not Enforced',
             checkPwdExpiryPassTitle: 'Password Expiry Is Enforced',
             checkPwdExpiryDesc:      'Without password expiry, compromised credentials remain valid indefinitely. Enforcing a maximum password age limits the window of exposure if a password is leaked.',
-            checkPwdExpiryRemediation: 'Enable password expiry: UGOS Control Panel › Users › Password Expiry.',
+            checkPwdExpiryRemediation: 'Enable password expiry: UGOS Control Panel › Users › Advanced › Password Expiry Rules.',
 
             // ── check-maintenance.js (BP) ──────────────────────────────────────
             bpCheckAutoUpdateFailTitle: 'Automatic Firmware Installation Enabled',
             bpCheckAutoUpdatePassTitle: 'Firmware Updates Under Manual Control',
             bpCheckAutoUpdateDesc:      'Automatic firmware installation can trigger unexpected reboots at uncontrolled times and applies untested updates without a review window. Notification-only mode satisfies CIS 7.3 (timely, organised patching) while keeping you in control of when updates are applied.',
-            bpCheckAutoUpdateRemediation: 'Disable automatic installation and enable update notifications instead: UGOS Control Panel › System Update › set to "Notify only". Apply updates during a planned maintenance window.',
+            bpCheckAutoUpdateRemediation: 'Disable automatic installation and enable update notifications instead: UGOS Control Panel › System Update › Additional Settings › Update Settings. Apply updates during a planned maintenance window.',
 
             // ── check-bestpractices.js ─────────────────────────────────────────
             bpCheckWideLinksFailTitle: 'SMB Wide Links Are Enabled',
             bpCheckWideLinksPassTitle: 'SMB Wide Links Are Disabled',
             bpCheckWideLinksDesc:      'Wide links allow symbolic links inside a share to point to paths outside that share, including other shares or the host filesystem. This can unintentionally expose data to SMB users outside their intended scope.',
-            bpCheckWideLinksRemediation: 'Disable wide links: UGOS Control Panel › File Services › SMB › Advanced.',
+            bpCheckWideLinksRemediation: 'Disable wide links: UGOS Control Panel › File Services › SMB › Advanced › Allow Cross-Share Symbolic Links in Shared Folders.',
 
             bpCheckFTPActiveFailTitle: 'FTP Service Is Running',
             bpCheckFTPActivePassTitle: 'FTP Service Is Disabled',
@@ -325,81 +316,72 @@
             checkSSHLanOnlyFailTitle: 'SSH ist aus dem Internet erreichbar (WAN)',
             checkSSHLanOnlyPassTitle: 'SSH-Zugriff ist auf LAN beschränkt',
             checkSSHLanOnlyDesc:      'SSH ist aktiviert und von außerhalb des lokalen Netzwerks erreichbar. Dies setzt die Remote-Shell dem öffentlichen Internet aus und erhöht das Risiko von Brute-Force-Angriffen, SSH-Exploits und unbefugtem Zugriff erheblich.',
-            checkSSHLanOnlyRemediation: 'SSH auf LAN beschränken: UGOS Systemsteuerung › Terminal › SSH › Nur LAN-Zugriff erlauben.',
+            checkSSHLanOnlyRemediation: 'SSH auf LAN beschränken: UGOS Systemsteuerung › Terminal › SSH › Erweitert › Nur LAN-Zugriff erlauben.',
 
             // ── check-filesharing.js ───────────────────────────────────────────
             checkSMB1FailTitle:      'SMBv1 ist erlaubt',
             checkSMB1PassTitle:      'SMBv1 ist deaktiviert',
             checkSMB1Desc:           'SMBv1 ist ein veraltetes Protokoll ohne Verschlüsselung oder Integritätsprüfung. Es ist der Angriffsvektor für EternalBlue (WannaCry, NotPetya). Alle modernen Clients unterstützen SMB2 oder SMB3.',
-            checkSMB1Remediation:    'Mindest-SMB-Version auf SMB2 oder höher setzen: UGOS Systemsteuerung › Dateidienste › SMB.',
+            checkSMB1Remediation:    'Mindest-SMB-Version auf SMB2 oder höher setzen: UGOS Systemsteuerung › Dateidienste › SMB › Erweitert › Unterstützte SMB-Protokolle.',
 
             checkSMBSigningFailTitle: 'SMB-Signierung wird nicht erzwungen',
             checkSMBSigningPassTitle: 'SMB-Signierung wird erzwungen',
-            checkSMBSigningDesc:      'SMB-Signierung stellt sicher, dass Netzwerkpakete während der Übertragung nicht manipuliert wurden. Ohne Signierung ist das NAS anfällig für NTLM-Relay- und Man-in-the-Middle-Angriffe. Der Modus "Wenn erforderlich" ist nicht ausreichend — Signierung muss auf "Erforderlich" gesetzt werden.',
-            checkSMBSigningRemediation: 'SMB-Signierung auf "Erforderlich" setzen: UGOS Systemsteuerung › Dateidienste › SMB › Signierungsmodus.',
+            checkSMBSigningDesc:      'SMB-Signierung stellt sicher, dass Netzwerkpakete während der Übertragung nicht manipuliert wurden. Ohne Signierung ist das NAS anfällig für NTLM-Relay- und Man-in-the-Middle-Angriffe. Der Modus "Wenn erforderlich" ist nicht ausreichend — Server Signatur muss auf "Erzwingend" gesetzt werden.',
+            checkSMBSigningRemediation: 'Server Signatur auf "Erzwingend" setzen: UGOS Systemsteuerung › Dateidienste › SMB › Erweitert › Server Signatur.',
 
             checkSMBEncryptFailTitle: 'SMB-Verschlüsselung ist deaktiviert',
             checkSMBEncryptPassTitle: 'SMB-Verschlüsselung ist aktiviert',
             checkSMBEncryptDesc:      'Ohne SMB-Verschlüsselung können Dateiinhalte und Anmeldedaten von jedem auf dem Netzwerkpfad abgefangen werden. SMB-Verschlüsselung (SMB3-Feature) schützt Daten zwischen NAS und Clients.',
-            checkSMBEncryptRemediation: 'SMB-Verschlüsselung aktivieren: UGOS Systemsteuerung › Dateidienste › SMB › Verschlüsselungsmodus ("Gewünscht" oder "Erforderlich").',
+            checkSMBEncryptRemediation: 'Übertragungsverschlüsselungsmodus auf "Erzwingend" setzen: UGOS Systemsteuerung › Dateidienste › SMB › Erweitert › Übertragungsverschlüsselungsmodus.',
 
             checkFTPTLSFailTitle:    'Unverschlüsseltes FTP ist aktiviert',
             checkFTPTLSPassTitle:    'Unverschlüsseltes FTP ist deaktiviert',
             checkFTPTLSDesc:         'FTP ohne TLS überträgt Anmeldedaten und Dateiinhalte im Klartext. Jeder auf dem Netzwerkpfad kann Passwörter und Daten mitlesen. FTPS oder SFTP sollte verwendet werden.',
-            checkFTPTLSRemediation:  'Unverschlüsseltes FTP deaktivieren, nur FTPS verwenden: UGOS Systemsteuerung › Dateidienste › FTP.',
-
-            checkFTPAnonFailTitle:   'FTP-Anonymzugriff ist aktiviert',
-            checkFTPAnonDesc:        'Anonymer FTP-Zugriff erlaubt Verbindungen ohne Anmeldedaten und macht freigegebene Dateien ohne Authentifizierung zugänglich.',
-            checkFTPAnonRemediation: 'Anonymen FTP-Zugriff deaktivieren: UGOS Systemsteuerung › Dateidienste › FTP.',
+            checkFTPTLSRemediation:  'Unverschlüsseltes FTP deaktivieren, nur FTPS verwenden: UGOS Systemsteuerung › Dateidienste › FTP › FTPS aktivieren.',
 
             checkWebDAVHttpFailTitle: 'WebDAV ist über HTTP erreichbar',
             checkWebDAVHttpPassTitle: 'WebDAV ist nur über HTTPS erreichbar',
             checkWebDAVHttpDesc:      'WebDAV über unverschlüsseltes HTTP überträgt Anmeldedaten und Dateiinhalte im Klartext. Jeder Netzwerkbeobachter kann Authentifizierungstoken und Daten mitlesen.',
-            checkWebDAVHttpRemediation: 'HTTP-WebDAV deaktivieren, nur HTTPS verwenden: UGOS Systemsteuerung › Dateidienste › WebDAV.',
-
-            checkNFSV3FailTitle:     'NFS läuft nur mit NFSv3',
-            checkNFSV4PassTitle:     'NFS ist für NFSv4 konfiguriert',
-            checkNFSV3Desc:          'NFSv3 bietet keine Authentifizierungsmechanismen jenseits IP-basierter Zugriffskontrollen. Jeder Host, der das NAS im Netzwerk erreichen kann, kann potenziell auf NFS-Exporte zugreifen. NFSv4 unterstützt Kerberos-Authentifizierung und bietet deutlich stärkere Zugriffskontrollen.',
-            checkNFSV3Remediation:   'NFSv4-Unterstützung aktivieren: UGOS Systemsteuerung › Dateidienste › NFS › Maximales NFS-Protokoll.',
+            checkWebDAVHttpRemediation: 'HTTP-WebDAV deaktivieren, nur HTTPS verwenden: UGOS Systemsteuerung › Dateidienste › WebDAV › Erweitert.',
 
             // ── check-network.js ───────────────────────────────────────────────
             checkDoSFailTitle:       'DoS-Schutz ist deaktiviert',
             checkDoSPassTitle:       'DoS-Schutz ist aktiv',
             checkDoSDesc:            'DoS-Schutz (Denial of Service) verwirft fehlerhafte und Flood-Pakete, bevor sie Systemressourcen erschöpfen können. Ohne diesen Schutz können selbst einfache Netzwerkfluten die NAS-Reaktionsfähigkeit beeinträchtigen.',
-            checkDoSRemediation:     'DoS-Schutz aktivieren: UGOS Systemsteuerung › Sicherheit › Firewall › DoS-Schutz.',
+            checkDoSRemediation:     'DoS-Schutz aktivieren: UGOS Systemsteuerung › Sicherheit › DoS-Schutz.',
 
             // ── check-users.js ─────────────────────────────────────────────────
             checkPwdLengthFailTitle: 'Minimale Kennwortlänge liegt unter dem empfohlenen Schwellenwert',
             checkPwdLengthPassTitle: 'Minimale Kennwortlänge entspricht dem empfohlenen Schwellenwert',
             checkPwdLengthDesc:      'Die aktuelle Mindestkennwortlänge ({0} Zeichen) liegt unter dem empfohlenen Minimum von 12. Kurze Kennwörter sind deutlich einfacher durch Brute-Force- oder Wörterbuchangriffe zu knacken.',
-            checkPwdLengthRemediation: 'Mindestkennwortlänge auf mindestens 12 Zeichen erhöhen: UGOS Systemsteuerung › Benutzer › Kennwortrichtlinie.',
+            checkPwdLengthRemediation: 'Mindestkennwortlänge auf mindestens 12 Zeichen erhöhen: UGOS Systemsteuerung › Benutzer › Erweitert › Mindestlänge des Passworts.',
 
             checkPwdCommonFailTitle: 'Prüfung auf gängige Kennwörter ist nicht aktiviert',
             checkPwdCommonPassTitle: 'Prüfung auf gängige Kennwörter ist aktiv',
             checkPwdCommonDesc:      'Ohne Prüfung auf gängige Kennwörter können Benutzer leicht erratbare Kennwörter wie "Passwort1!" setzen, die technisch die Komplexitätsregeln erfüllen, aber in der Praxis kaum Sicherheit bieten.',
-            checkPwdCommonRemediation: 'Prüfung auf gängige Kennwörter aktivieren: UGOS Systemsteuerung › Benutzer › Kennwortrichtlinie.',
+            checkPwdCommonRemediation: 'Prüfung auf gängige Kennwörter aktivieren: UGOS Systemsteuerung › Benutzer › Erweitert › Vermeidet gängige Passwörter.',
 
             checkPwdSpecialFailTitle: 'Kennwortrichtlinie erfordert keine Sonderzeichen',
             checkPwdSpecialPassTitle: 'Kennwortrichtlinie erfordert Sonderzeichen',
             checkPwdSpecialDesc:      'Die Anforderung mindestens eines Sonderzeichens erhöht die Kennwort-Entropie und die Resistenz gegen Wörterbuchangriffe erheblich.',
-            checkPwdSpecialRemediation: 'Sonderzeichen-Anforderung aktivieren: UGOS Systemsteuerung › Benutzer › Kennwortrichtlinie.',
+            checkPwdSpecialRemediation: 'Sonderzeichen-Anforderung aktivieren: UGOS Systemsteuerung › Benutzer › Erweitert › Muss mindestens 1 Sonderzeichen enthalten.',
 
             checkPwdExpiryFailTitle: 'Kennwortablauf wird nicht erzwungen',
             checkPwdExpiryPassTitle: 'Kennwortablauf wird erzwungen',
             checkPwdExpiryDesc:      'Ohne Kennwortablauf bleiben kompromittierte Zugangsdaten unbegrenzt gültig. Ein maximales Kennwortalter begrenzt das Risikofenster bei Datenlecks.',
-            checkPwdExpiryRemediation: 'Kennwortablauf aktivieren: UGOS Systemsteuerung › Benutzer › Kennwortablauf.',
+            checkPwdExpiryRemediation: 'Kennwortablauf aktivieren: UGOS Systemsteuerung › Benutzer › Erweitert › Passwort-Ablaufregeln.',
 
             // ── check-maintenance.js (BP) ──────────────────────────────────────
             bpCheckAutoUpdateFailTitle: 'Automatische Firmware-Installation aktiviert',
             bpCheckAutoUpdatePassTitle: 'Firmware-Updates unter manueller Kontrolle',
             bpCheckAutoUpdateDesc:      'Automatische Firmware-Installation kann unerwartete Neustarts zu unkontrollierten Zeitpunkten auslösen und spielt Updates ohne Prüfung ein. Der Benachrichtigungsmodus erfüllt CIS 7.3 (zeitnahes, geregeltes Patching) und lässt dennoch die Kontrolle über den Zeitpunkt beim Administrator.',
-            bpCheckAutoUpdateRemediation: 'Automatische Installation deaktivieren und stattdessen Update-Benachrichtigungen aktivieren: UGOS Systemsteuerung › Systemaktualisierung › "Nur benachrichtigen". Updates im geplanten Wartungsfenster einspielen.',
+            bpCheckAutoUpdateRemediation: 'Automatische Installation deaktivieren und stattdessen Update-Benachrichtigungen aktivieren: UGOS Systemsteuerung › Systemaktualisierung › Weitere Einstellungen › Update-Einstellungen. Updates im geplanten Wartungsfenster einspielen.',
 
             // ── check-bestpractices.js ─────────────────────────────────────────
             bpCheckWideLinksFailTitle: 'SMB Wide Links sind aktiviert',
             bpCheckWideLinksPassTitle: 'SMB Wide Links sind deaktiviert',
             bpCheckWideLinksDesc:      'Wide Links erlauben symbolischen Links innerhalb einer Freigabe, auf Pfade außerhalb der Freigabe zu zeigen. Dies kann SMB-Benutzern unbeabsichtigt Zugriff auf Daten außerhalb ihres vorgesehenen Bereichs geben.',
-            bpCheckWideLinksRemediation: 'Wide Links deaktivieren: UGOS Systemsteuerung › Dateidienste › SMB › Erweitert.',
+            bpCheckWideLinksRemediation: 'Wide Links deaktivieren: UGOS Systemsteuerung › Dateidienste › SMB › Erweitert › Übergreifende Symbolische Links in freigegebenen Ordnern zulassen.',
 
             bpCheckFTPActiveFailTitle: 'FTP-Dienst läuft',
             bpCheckFTPActivePassTitle: 'FTP-Dienst ist deaktiviert',
