@@ -67,9 +67,7 @@ Tested against UGOS Pro. Earlier versions may work if the backup format is compa
 | Protocols | SMB signing not required | High / Medium |
 | Protocols | SMB encryption disabled | Medium |
 | Protocols | FTP without TLS | High |
-| Protocols | FTP anonymous access enabled | Critical |
 | Protocols | WebDAV over HTTP | High |
-| Protocols | NFS v3 only (no NFSv4) | Medium |
 | Network Security | DoS protection not enabled | Medium |
 | User Accounts | Minimum password length below 12 | Medium |
 | User Accounts | Common password check disabled | Low |
